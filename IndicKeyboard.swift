@@ -538,31 +538,41 @@ struct QWERTYKeyboardView: View {
         }
     }
 
-    // MARK: - Action Row
-    private var actionRow: some View {
-        HStack(spacing: 8) {
+   // MARK: - Action Row (123, SPACE, comma, enter)
+private var actionRow: some View {
+    HStack(spacing: 8) {
 
-            Button("123") {
-                isNumberMode = true
-            }
-            .frame(width: 56, height: 48)
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(8)
-
-            // SPACE key
-            FastKey(label: "SPACE", textColor: .blue) {
-                handleKey(" ")
-            }
-
-            Button("↵") {
-                handleKey("\n")
-            }
-            .frame(width: 70, height: 48)
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(8)
+        // 123 Key
+        Button("123") {
+            isNumberMode = true
         }
+        .frame(width: 56, height: 48)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(8)
+
+        // SPACE Key
+        FastKey(label: "SPACE", textColor: .blue) {
+            handleKey(" ")
+        }
+
+        // Comma
+        Button(",") {
+            handleKey(",")
+        }
+        .frame(width: 50, height: 48)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(8)
+
+        // Enter Key
+        Button("↵") {
+            handleKey("\n")
+        }
+        .frame(width: 60, height: 48)
+        .background(Color.blue)
+        .foregroundColor(.white)
+        .cornerRadius(8)
     }
+}
 
     // MARK: - Shift Button (English only)
     private var shiftButton: some View {
@@ -857,14 +867,30 @@ struct LetterKey: View {
 }
 
 // MARK: - Symbol Pad
+// MARK: - Symbol Pad (Number Pad) — Updated with SPACE + Smooth Delete updated
 struct SymbolPad: View {
     let onKey: (String) -> Void
     let onABC: () -> Void
 
+    @State private var deleteTimer: Timer? = nil
+
+    private func startDelete() {
+        deleteTimer?.invalidate()
+        deleteTimer = Timer.scheduledTimer(withTimeInterval: 0.07, repeats: true) { _ in
+            onKey("DEL")
+        }
+    }
+
+    private func stopDelete() {
+        deleteTimer?.invalidate()
+        deleteTimer = nil
+    }
+
     var body: some View {
         VStack(spacing: 8) {
 
-            ForEach(symbolKeys, id: \.self) { row in   // from AllLanguageKeys.swift
+            // Number rows (from AllLanguageKeys.swift)
+            ForEach(symbolKeys, id: \.self) { row in
                 HStack(spacing: 8) {
                     ForEach(row, id: \.main) { k in
                         Button(k.main) {
@@ -877,28 +903,48 @@ struct SymbolPad: View {
                 }
             }
 
-            HStack {
+            // Bottom Control Row: ABC | SPACE | DELETE
+            HStack(spacing: 8) {
+
+                // ABC Button
                 Button("ABC") { onABC() }
-                    .frame(width: 80, height: 48)
+                    .frame(width: 70, height: 48)
                     .background(Color.orange)
                     .foregroundColor(.white)
                     .cornerRadius(10)
 
-                Spacer()
+                // SPACE Button
+                Button("SPACE") {
+                    onKey(" ")
+                }
+                .frame(maxWidth: .infinity, minHeight: 48)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(10)
 
+                // DELETE (Tap + Long-Press)
                 Button {
+                    stopDelete()
                     onKey("DEL")
                 } label: {
                     Image(systemName: "delete.left")
-                        .frame(width: 80, height: 48)
+                        .frame(width: 70, height: 48)
                         .background(Color(.systemGray5))
                         .cornerRadius(10)
                 }
+                .simultaneousGesture(
+                    LongPressGesture(minimumDuration: 0.25)
+                        .onEnded { _ in startDelete() }
+                )
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 1)
+                        .onEnded { _ in stopDelete() }
+                )
             }
         }
         .padding(.horizontal, 6)
     }
 }
+
 
 // MARK: - Safe Access
 extension Array {
