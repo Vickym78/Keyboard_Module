@@ -24,15 +24,24 @@ public let symbolKeys: [[KeyModel]] = [
 ]
 
 // MARK: - Matra Lists (V1 order: matras first, variants last)
-let devanagariMatras   = ["ा","ि","ी","ु","ू","ृ","ॄ","े","ै","ो","ौ","ं","ः","ँ","्"]
-let teluguMatras       = ["ా","ి","ీ","ు","ూ","ృ","ౄ","ె","ే","ై","ొ","ో","ౌ","్"]
-let tamilMatras        = ["ா","ி","ೀ","ு","ூ","ெ","ே","ை","ொ","ோ","ௌ","்"]
-let kannadaMatras      = ["ಾ","ಿ","ೀ","ು","ೂ","ೃ","ೄ","ೆ","ೇ","ೈ","ೊ","ೋ","ೌ","್"]
-let malayalamMatras    = ["ാ","ി","ീ","ു","ൂ","ൃ","ൄ","െ","േ","ൈ","ൊ","ോ","ൗ","്"]
-let odiaMatras         = ["ା","ି","ୀ","ୁ","ୂ","ୃ","େ","ୈ","ୋ","ୌ","ଂ","ଃ","୍"]
-let bengaliMatras      = ["া","ি","ী","ু","ূ","ৃ","ে","ৈ","ো","ৌ","ঁ","ঃ","্"]
-let gujaratiMatras     = ["ા","િ","ી","ુ","ૂ","ૃ","ૄ","ે","ૈ","ો","ૌ","ં","ઃ","્"]
-let gurmukhiMatras     = ["ਾ","ਿ","ੀ","ੁ","ੂ","ੇ","ੈ","ੋ","ੌ","ਂ","ੰ","੍"]
+let devanagariMatras = ["ा","ि","ी","ु","ू","ृ","ॄ","े","ै","ो","ौ","ं","ः","ँ","्"]
+
+let teluguMatras = ["ా","ి","ీ","ు","ూ","ృ","ౄ","ౢ","ౣ","ె","ే","ై","ొ","ో","ౌ","్"]
+
+let tamilMatras = ["ா","ி","ீ","ு","ூ","ெ","ே","ை","ொ","ோ","ௌ","்"]
+
+let kannadaMatras = ["ಾ","ಿ","ೀ","ು","ೂ","ೃ","ೄ","ೆ","ೇ","ೈ","ೊ","ೋ","ೌ","್"]
+
+let malayalamMatras = ["ാ","ി","ീ","ു","ൂ","ൃ","ൄ","െ","േ","ൈ","ൊ","ോ","ൌ","്"]
+
+let odiaMatras = ["ା","ି","ୀ","ୁ","ୂ","ୃ","ୄ","େ","ୈ","ୋ","ୌ","ଂ","ଃ","୍"]
+
+let bengaliMatras = ["া","ি","ী","ু","ূ","ৃ","ে","ৈ","ো","ৌ","ঁ","ঃ","্"]
+
+let gujaratiMatras = ["ા","િ","ી","ુ","ૂ","ૃ","ૄ","ે","ૈ","ો","ૌ","ં","ઃ","્"]
+
+let gurmukhiMatras = ["ਾ","ਿ","ੀ","ੁ","ੂ","ੇ","ੈ","ੋ","ੌ","ਂ","ੰ","੍"]
+
 
 // MARK: - HINDI / MARATHI / SANSKRIT (Devanagari) — FULL
 public let hindiKeys: [[KeyModel]] = [
@@ -65,7 +74,7 @@ public let hindiKeys: [[KeyModel]] = [
     // Row 6: Remaining + conjuncts + delete
     [KeyModel(main: "ष", popup: devanagariMatras), KeyModel(main: "स", popup: devanagariMatras), KeyModel(main: "ह", popup: devanagariMatras),
      KeyModel(main: "ळ", popup: devanagariMatras), KeyModel(main: "क्ष", popup: devanagariMatras), KeyModel(main: "त्र", popup: devanagariMatras),
-     KeyModel(main: "ज्ञ", popup: devanagariMatras), KeyModel(main: "श्र", popup: devanagariMatras), 
+     KeyModel(main: "ज्ञ", popup: devanagariMatras), KeyModel(main: "श्र", popup: devanagariMatras),
      KeyModel(main: "ॐ"), KeyModel(main: "ऍ"), KeyModel(main: "ऑ"), KeyModel(main: "ऎ"), KeyModel(main: "ऒ")],
      
     // Row 7: Explicit matra row (visible)
@@ -91,7 +100,12 @@ public let teluguKeys: [[KeyModel]] = [
      KeyModel(main: "భ", popup: teluguMatras), KeyModel(main: "మ", popup: teluguMatras), KeyModel(main: "య", popup: teluguMatras),
      KeyModel(main: "ర", popup: teluguMatras), KeyModel(main: "ల", popup: teluguMatras), KeyModel(main: "వ", popup: teluguMatras), KeyModel(main: "శ", popup: teluguMatras)],
     [KeyModel(main: "ష", popup: teluguMatras), KeyModel(main: "స", popup: teluguMatras), KeyModel(main: "హ", popup: teluguMatras),
-     KeyModel(main: "ళ", popup: teluguMatras), KeyModel(main: "క్ష", popup: teluguMatras), KeyModel(main: "ఱ", popup: teluguMatras)]
+     KeyModel(main: "ళ", popup: teluguMatras), KeyModel(main: "క్ష", popup: teluguMatras), KeyModel(main: "ఱ", popup: teluguMatras)],
+    // Row 7: Matra Row
+[KeyModel(main: "ా"), KeyModel(main: "ి"), KeyModel(main: "ీ"), KeyModel(main: "ు"), KeyModel(main: "ూ"),
+ KeyModel(main: "ృ"), KeyModel(main: "ౄ"), KeyModel(main: "ౢ"), KeyModel(main: "ౣ"),
+ KeyModel(main: "ె"), KeyModel(main: "ే"), KeyModel(main: "ై"), KeyModel(main: "ొ"), KeyModel(main: "ో"), KeyModel(main: "ౌ"), KeyModel(main: "్")]
+
 ]
 
 // MARK: - TAMIL — FULL
@@ -105,7 +119,11 @@ public let tamilKeys: [[KeyModel]] = [
     [KeyModel(main: "ய", popup: tamilMatras), KeyModel(main: "ர", popup: tamilMatras), KeyModel(main: "ற", popup: tamilMatras),
      KeyModel(main: "ல", popup: tamilMatras), KeyModel(main: "ள", popup: tamilMatras), KeyModel(main: "ழ", popup: tamilMatras),
      KeyModel(main: "வ", popup: tamilMatras), KeyModel(main: "ஷ", popup: tamilMatras), KeyModel(main: "ஸ", popup: tamilMatras), KeyModel(main: "ஹ", popup: tamilMatras)],
-    [KeyModel(main: "DEL")]
+   
+    // Row 7: Matra Row
+[KeyModel(main: "ா"), KeyModel(main: "ி"), KeyModel(main: "ீ"), KeyModel(main: "ு"), KeyModel(main: "ூ"),
+ KeyModel(main: "ெ"), KeyModel(main: "ே"), KeyModel(main: "ை"), KeyModel(main: "ொ"), KeyModel(main: "ோ"), KeyModel(main: "ௌ"), KeyModel(main: "்")]
+
 ]
 
 // MARK: - KANNADA — FULL
@@ -123,7 +141,12 @@ public let kannadaKeys: [[KeyModel]] = [
      KeyModel(main: "ಭ", popup: kannadaMatras), KeyModel(main: "ಮ", popup: kannadaMatras), KeyModel(main: "ಯ", popup: kannadaMatras),
      KeyModel(main: "ರ", popup: kannadaMatras), KeyModel(main: "ಲ", popup: kannadaMatras), KeyModel(main: "ವ", popup: kannadaMatras), KeyModel(main: "ಶ", popup: kannadaMatras)],
     [KeyModel(main: "ಷ", popup: kannadaMatras), KeyModel(main: "ಸ", popup: kannadaMatras), KeyModel(main: "ಹ", popup: kannadaMatras),
-     KeyModel(main: "ಳ", popup: kannadaMatras), KeyModel(main: "ಕ್ಷ", popup: kannadaMatras)]
+     KeyModel(main: "ಳ", popup: kannadaMatras), KeyModel(main: "ಕ್ಷ", popup: kannadaMatras)],
+    // Row 7: Matra Row
+[KeyModel(main: "ಾ"), KeyModel(main: "ಿ"), KeyModel(main: "ೀ"), KeyModel(main: "ು"), KeyModel(main: "ೂ"),
+ KeyModel(main: "ೃ"), KeyModel(main: "ೄ"), KeyModel(main: "ೆ"), KeyModel(main: "ೇ"), KeyModel(main: "ೈ"),
+ KeyModel(main: "ೊ"), KeyModel(main: "ೋ"), KeyModel(main: "ೌ"), KeyModel(main: "್")]
+
 ]
 
 // MARK: - MALAYALAM — FULL
@@ -141,7 +164,12 @@ public let malayalamKeys: [[KeyModel]] = [
      KeyModel(main: "ഭ", popup: malayalamMatras), KeyModel(main: "മ", popup: malayalamMatras), KeyModel(main: "യ", popup: malayalamMatras),
      KeyModel(main: "ര", popup: malayalamMatras), KeyModel(main: "ല", popup: malayalamMatras), KeyModel(main: "വ", popup: malayalamMatras), KeyModel(main: "ശ", popup: malayalamMatras)],
     [KeyModel(main: "ഷ", popup: malayalamMatras), KeyModel(main: "സ", popup: malayalamMatras), KeyModel(main: "ഹ", popup: malayalamMatras),
-     KeyModel(main: "ള", popup: malayalamMatras), KeyModel(main: "ഴ", popup: malayalamMatras), KeyModel(main: "റ", popup: malayalamMatras),]
+     KeyModel(main: "ള", popup: malayalamMatras), KeyModel(main: "ഴ", popup: malayalamMatras), KeyModel(main: "റ", popup: malayalamMatras),],
+    // Row 7: Matra Row
+[KeyModel(main: "ാ"), KeyModel(main: "ി"), KeyModel(main: "ീ"), KeyModel(main: "ു"), KeyModel(main: "ൂ"),
+ KeyModel(main: "ൃ"), KeyModel(main: "ൄ"), KeyModel(main: "െ"), KeyModel(main: "േ"), KeyModel(main: "ൈ"),
+ KeyModel(main: "ൊ"), KeyModel(main: "ോ"), KeyModel(main: "ൌ"), KeyModel(main: "്")]
+
 ]
 
 // MARK: - ODIA — FULL
@@ -159,7 +187,13 @@ public let odiaKeys: [[KeyModel]] = [
      KeyModel(main: "ଭ", popup: odiaMatras), KeyModel(main: "ମ", popup: odiaMatras), KeyModel(main: "ଯ", popup: odiaMatras),
      KeyModel(main: "ର", popup: odiaMatras), KeyModel(main: "ଲ", popup: odiaMatras), KeyModel(main: "ଳ", popup: odiaMatras), KeyModel(main: "ଵ", popup: odiaMatras)],
     [KeyModel(main: "ଶ", popup: odiaMatras), KeyModel(main: "ଷ", popup: odiaMatras), KeyModel(main: "ସ", popup: odiaMatras),
-     KeyModel(main: "ହ", popup: odiaMatras)]
+     KeyModel(main: "ହ", popup: odiaMatras)] ,
+    // Row 7: Matra Row
+[KeyModel(main: "ା"), KeyModel(main: "ି"), KeyModel(main: "ୀ"), KeyModel(main: "ୁ"), KeyModel(main: "ୂ"),
+ KeyModel(main: "ୃ"), KeyModel(main: "ୄ"), KeyModel(main: "େ"), KeyModel(main: "ୈ"),
+ KeyModel(main: "ୋ"), KeyModel(main: "ୌ"), KeyModel(main: "୍")]
+
+    
 ]
 
 // MARK: - BENGALI / ASSAMESE — FULL
@@ -176,7 +210,11 @@ public let bengaliKeys: [[KeyModel]] = [
     [KeyModel(main: "প", popup: bengaliMatras), KeyModel(main: "ফ", popup: bengaliMatras), KeyModel(main: "ব", popup: bengaliMatras),
      KeyModel(main: "ভ", popup: bengaliMatras), KeyModel(main: "ম", popup: bengaliMatras), KeyModel(main: "য", popup: bengaliMatras),
      KeyModel(main: "র", popup: bengaliMatras), KeyModel(main: "ল", popup: bengaliMatras), KeyModel(main: "শ", popup: bengaliMatras), KeyModel(main: "ষ", popup: bengaliMatras)],
-    [KeyModel(main: "স", popup: bengaliMatras), KeyModel(main: "হ", popup: bengaliMatras), KeyModel(main: "়"), KeyModel(main: "্")]
+    [KeyModel(main: "স", popup: bengaliMatras), KeyModel(main: "হ", popup: bengaliMatras), KeyModel(main: "়"), KeyModel(main: "্")] ,
+    // Row 7: Matra Row
+[KeyModel(main: "া"), KeyModel(main: "ি"), KeyModel(main: "ী"), KeyModel(main: "ু"), KeyModel(main: "ূ"),
+ KeyModel(main: "ৃ"), KeyModel(main: "ে"), KeyModel(main: "ৈ"), KeyModel(main: "ো"), KeyModel(main: "ৌ"), KeyModel(main: "্")]
+
 ]
 public let assameseKeys = bengaliKeys
 
@@ -195,7 +233,13 @@ public let gujaratiKeys: [[KeyModel]] = [
      KeyModel(main: "ભ", popup: gujaratiMatras), KeyModel(main: "મ", popup: gujaratiMatras), KeyModel(main: "ય", popup: gujaratiMatras),
      KeyModel(main: "ર", popup: gujaratiMatras), KeyModel(main: "લ", popup: gujaratiMatras), KeyModel(main: "વ", popup: gujaratiMatras), KeyModel(main: "શ", popup: gujaratiMatras)],
     [KeyModel(main: "ષ", popup: gujaratiMatras), KeyModel(main: "સ", popup: gujaratiMatras), KeyModel(main: "હ", popup: gujaratiMatras),
-     KeyModel(main: "્", popup: gujaratiMatras)]
+     KeyModel(main: "્", popup: gujaratiMatras)],
+
+// Row 7: Matra Row
+[KeyModel(main: "ા"), KeyModel(main: "િ"), KeyModel(main: "ી"), KeyModel(main: "ુ"), KeyModel(main: "ૂ"),
+ KeyModel(main: "ૃ"), KeyModel(main: "ૄ"), KeyModel(main: "ે"), KeyModel(main: "ૈ"), KeyModel(main: "ો"), KeyModel(main: "ૌ"), KeyModel(main: "્")]
+
+    
 ]
 
 // MARK: - PUNJABI (Gurmukhi) — FULL
@@ -213,7 +257,12 @@ public let punjabiKeys: [[KeyModel]] = [
      KeyModel(main: "ਭ", popup: gurmukhiMatras), KeyModel(main: "ਮ", popup: gurmukhiMatras), KeyModel(main: "ਯ", popup: gurmukhiMatras),
      KeyModel(main: "ਰ", popup: gurmukhiMatras), KeyModel(main: "ਲ", popup: gurmukhiMatras), KeyModel(main: "ਵ", popup: gurmukhiMatras), KeyModel(main: "ਸ", popup: gurmukhiMatras)],
     [KeyModel(main: "ਹ", popup: gurmukhiMatras), KeyModel(main: "ਖ਼", popup: gurmukhiMatras), KeyModel(main: "ਗ਼", popup: gurmukhiMatras),
-     KeyModel(main: "ਜ਼", popup: gurmukhiMatras), KeyModel(main: "ੜ", popup: gurmukhiMatras), KeyModel(main: "ਫ਼", popup: gurmukhiMatras)]
+     KeyModel(main: "ਜ਼", popup: gurmukhiMatras), KeyModel(main: "ੜ", popup: gurmukhiMatras), KeyModel(main: "ਫ਼", popup: gurmukhiMatras)] ,
+
+    // Row 7: Matra Row
+[KeyModel(main: "ਾ"), KeyModel(main: "ਿ"), KeyModel(main: "ੀ"), KeyModel(main: "ੁ"), KeyModel(main: "ੂ"),
+ KeyModel(main: "ੇ"), KeyModel(main: "ੈ"), KeyModel(main: "ੋ"), KeyModel(main: "ੌ"), KeyModel(main: "੍")]
+
 ]
 
 // MARK: - URDU (Perso-Arabic)
@@ -224,7 +273,7 @@ public let urduKeys: [[KeyModel]] = [
      KeyModel(main: "ظ"), KeyModel(main: "ع"), KeyModel(main: "غ"), KeyModel(main: "ف"), KeyModel(main: "ق")],
     [KeyModel(main: "ک", popup: ["گ"]), KeyModel(main: "ل"), KeyModel(main: "م"), KeyModel(main: "ن", popup: ["ں"]), KeyModel(main: "و"),
      KeyModel(main: "ہ", popup: ["ھ"]), KeyModel(main: "ی", popup: ["ئ"]), KeyModel(main: "ء"), KeyModel(main: "ؠ"), KeyModel(main: "؎")],
-    [KeyModel(main: "DEL")]
+    
 ]
 
 // MARK: - ENGLISH (with common accented popups)
