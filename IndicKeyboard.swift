@@ -383,7 +383,7 @@ struct QWERTYKeyboardView: View {
     let langCode: String
 
     @State private var isNumberMode = false
-
+    private static var lastShiftTap = Date(timeIntervalSince1970: 0)
     @State private var shiftOn = false
     @State private var capsLock = false
     @State private var blockIndex = 0  // which block of letters (for local langs)
@@ -593,18 +593,38 @@ private var actionRow: some View {
 
     // English shift only; local languages ignore shift
     private func toggleShift() {
-        guard langCode == "en" else { return }
+    guard langCode == "en" else { return }
 
-        if capsLock {
-            capsLock = false
-            shiftOn = false
-        } else if shiftOn {
-            capsLock = true
-            shiftOn = false
-        } else {
-            shiftOn = true
-        }
+    let now = Date()
+    let delta = now.timeIntervalSince(Self.lastShiftTap)
+
+    // -------------------------------
+    // 1️⃣ DOUBLE TAP → CAPS LOCK
+    // -------------------------------
+    if delta < 0.35 {
+        capsLock = true
+        shiftOn = false
+        Self.lastShiftTap = now
+        return
     }
+
+    // -------------------------------
+    // 2️⃣ If CAPS LOCK ON → turn OFF
+    // -------------------------------
+    if capsLock {
+        capsLock = false
+        shiftOn = false
+        Self.lastShiftTap = now
+        return
+    }
+
+    // -------------------------------
+    // 3️⃣ Single SHIFT → next letter uppercase
+    // -------------------------------
+    shiftOn = true
+    Self.lastShiftTap = now
+}
+
 
     // MARK: - Delete key in row
     private var deleteKeyInRow: some View {
@@ -657,24 +677,43 @@ private var actionRow: some View {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
 
-    private func insertAtCursor(_ s: String) {
+  private func insertAtCursor(_ s: String) {
 
-        let ns = text as NSString
-        let total = ns.length
+    let ns = text as NSString
+    let total = ns.length
 
-        let safeLoc = min(max(0, cursorUTF16Pos), total)
-        let safeLen = min(max(0, selectionLengthUTF16), total - safeLoc)
+    let safeLoc = min(max(0, cursorUTF16Pos), total)
+    let safeLen = min(max(0, selectionLengthUTF16), total - safeLoc)
 
-        let range = NSRange(location: safeLoc, length: safeLen)
+    let range = NSRange(location: safeLoc, length: safeLen)
 
-        let replacement = (langCode == "en" && (shiftOn || capsLock)) ? s.uppercased() : s
+    var replacement = s
 
-        text = ns.replacingCharacters(in: range, with: replacement)
-        let newPos = safeLoc + replacement.utf16.count
+    // ----------------------------------------------
+    //      ⭐ REAL GBOARD SHIFT BEHAVIOR ⭐
+    // ----------------------------------------------
+    if langCode == "en" {
 
-        cursorUTF16Pos = newPos
-        selectionLengthUTF16 = 0
+        if capsLock {
+            // CAPS LOCK → always uppercase
+            replacement = s.uppercased()
+
+        } else if shiftOn {
+            // ONE-TIME SHIFT → uppercase once
+            replacement = s.uppercased()
+            shiftOn = false         // ⭐ auto reset
+        }
     }
+
+    // ----------------------------------------------
+
+    text = ns.replacingCharacters(in: range, with: replacement)
+    let newPos = safeLoc + replacement.utf16.count
+
+    cursorUTF16Pos = newPos
+    selectionLengthUTF16 = 0
+}
+
 
     // MARK: - Delete logic (with smart Indic behavior)
     private func deleteGrapheme() {
